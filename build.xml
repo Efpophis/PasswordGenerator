@@ -59,7 +59,7 @@
 
     An example of overriding the target for project execution could look like this:
 
-        <target name="run" depends="GDPasswordGen-impl.jar">
+        <target name="run" depends="PasswordGen-impl.jar">
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>
@@ -77,7 +77,7 @@
              minus the .jar extension. It should not have spaces.
              <property name="store.jar.name" value="MyJarName"/>
         -->
-        <property name="deploy.jar.name" value="gdpwgen"/>
+        <property name="deploy.jar.name" value="pwgen.jar"/>
 
 
         <!-- don't edit below this line -->
