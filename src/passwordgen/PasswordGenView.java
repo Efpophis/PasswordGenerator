@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import java.util.*;
+import javax.swing.JTextField;
 
 /**
  * The application's main frame.
@@ -157,7 +158,6 @@ public class PasswordGenView extends FrameView {
         btnGenerate = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        passPhrase = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         phraseLength = new javax.swing.JSpinner();
@@ -168,6 +168,7 @@ public class PasswordGenView extends FrameView {
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        passPhrase = new javax.swing.JTextField();
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -360,11 +361,6 @@ public class PasswordGenView extends FrameView {
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        passPhrase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        passPhrase.setText(resourceMap.getString("lblPassphrase.text")); // NOI18N
-        passPhrase.setToolTipText(resourceMap.getString("lblPassphrase.toolTipText")); // NOI18N
-        passPhrase.setName("lblPassphrase"); // NOI18N
-
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
@@ -401,6 +397,11 @@ public class PasswordGenView extends FrameView {
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
+
+        passPhrase.setEditable(false);
+        passPhrase.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passPhrase.setText(resourceMap.getString("passPhrase.text")); // NOI18N
+        passPhrase.setName("passPhrase"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -449,15 +450,14 @@ public class PasswordGenView extends FrameView {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(passPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addGap(35, 35, 35))
         );
 
-        passPhrase.getAccessibleContext().setAccessibleName(resourceMap.getString("lblPassphrase.AccessibleContext.accessibleName")); // NOI18N
         jButton1.getAccessibleContext().setAccessibleName(resourceMap.getString("btnGenPhrase.AccessibleContext.accessibleName")); // NOI18N
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -546,7 +546,9 @@ private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_btnGenerateActionPerformed
 
 private void generatePassPhrase(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generatePassPhrase
-    final int phrLen = (Integer)phraseLength.getValue();
+
+        final int phrLen = (Integer)phraseLength.getValue();
+    
     final int minLen = (Integer)minWordLength.getValue();
     
     if ( phrLen <= 0 )
@@ -556,7 +558,7 @@ private void generatePassPhrase(java.awt.event.ActionEvent evt) {//GEN-FIRST:eve
                                       "FAIL", JOptionPane.ERROR_MESSAGE );
         return;
     }    
-    
+   
     progressBar.setValue(0);
     progressBar.setStringPainted(true);
     progressBar.setVisible(true);
@@ -566,30 +568,16 @@ private void generatePassPhrase(java.awt.event.ActionEvent evt) {//GEN-FIRST:eve
         public Object doInBackground(){        
     
             String phrase = "";
-
+            setTextField(passPhrase, phrase);
+            
             for ( int i = 0; i < phrLen; ++i )
             {
-                phrase += " " + m_wordList.random(minLen);
                 updateProgressBar(i);
+                
+                phrase += " " + m_wordList.random(minLen);
+            
+                setTextField(passPhrase, phrase);
             }
-            
-            final String finalPhrase = phrase;
-            
-            Runnable setLblText = new Runnable() {
-                public void run(){
-                    passPhrase.setText(finalPhrase);
-                }
-            };
-            
-            try
-            {
-                SwingUtilities.invokeLater(setLblText);
-            }
-            catch ( Exception e )
-            {
-                e.printStackTrace();
-            }
-            
             updateProgressBar(phrLen);
             return null;
         }
@@ -598,23 +586,28 @@ private void generatePassPhrase(java.awt.event.ActionEvent evt) {//GEN-FIRST:eve
     doWork.execute();
 }//GEN-LAST:event_generatePassPhrase
 
-    private void displayPassword( String value )
+    private void setTextField( JTextField field, String value )
     {
         final String txtValue = value;
+        final JTextField txtField = field;
 
-        Runnable setTxtboxValue = new Runnable(){
-            public void run(){
-                txtPasswd.setText(txtValue);
+            Runnable setTxtboxValue = new Runnable(){
+                public void run(){
+                    txtField.setText(txtValue);
+                }
+            };
+            try
+            {
+                SwingUtilities.invokeLater(setTxtboxValue);
             }
-        };
-        try
-        {
-            SwingUtilities.invokeLater(setTxtboxValue);
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
+            catch ( Exception e )
+            {
+                e.printStackTrace();
+            }
+    }
+    private void displayPassword( String value )
+    {
+        setTextField( txtPasswd, value );        
     }
 
     private void updateProgressBar( int value )
@@ -660,7 +653,7 @@ private void generatePassPhrase(java.awt.event.ActionEvent evt) {//GEN-FIRST:eve
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JSpinner minWordLength;
-    private javax.swing.JLabel passPhrase;
+    private javax.swing.JTextField passPhrase;
     private javax.swing.JSpinner phraseLength;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JSpinner spinLength;
