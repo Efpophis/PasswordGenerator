@@ -1,0 +1,26 @@
+This software is released under the terms of the WTFDBMPL public license,
+Which I made up on the spot, heavily inspired by the WTFPL (http://sam.zoy.org/wtfpl).
+
+The license is ever-so-slightly more restrictive than the WTFPL, in that you
+can't blame me if something bad happens (Section 1). 
+
+Other than that, see Section 0.
+
+The text of the license:
+            
+            
+ DO WHAT THE FUCK YOU WANT TO, JUST DON'T BLAME ME PUBLIC LICENSE
+                   Version 1, November 2011
+
+Copyright (C) 2011 Bill Crossley <billcrossley@gmail.com>
+
+Everyone is permitted to copy and distribute verbatim or modified
+copies of this license document, and changing it is allowed as long
+as the name is changed.
+
+ DO WHAT THE FUCK YOU WANT TO, JUST DON'T BLAME ME PUBLIC LICENSE
+                TERMS AND CONDITIONS FOR COPYING, 
+                  DISTRIBUTION AND MODIFICATION
+
+ 0. You just DO WHAT THE FUCK YOU WANT TO.
+ 1. Don't blame me if something bad happens.
