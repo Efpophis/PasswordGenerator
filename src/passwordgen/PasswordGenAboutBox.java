@@ -114,7 +114,7 @@ public class PasswordGenAboutBox extends javax.swing.JDialog {
                     .addComponent(appVendorLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(appHomepageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addContainerGap())
         );
