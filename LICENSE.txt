@@ -9,7 +9,7 @@ Other than that, see Section 0.
 The text of the license:
             
             
- DO WHAT THE FUCK YOU WANT TO, JUST DON'T BLAME ME PUBLIC LICENSE
+ DO WHAT THE F**K YOU WANT TO, JUST DON'T BLAME ME PUBLIC LICENSE
                    Version 1, November 2011
 
 Copyright (C) 2011 Bill Crossley <billcrossley@gmail.com>
@@ -18,9 +18,9 @@ Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
 as the name is changed.
 
- DO WHAT THE FUCK YOU WANT TO, JUST DON'T BLAME ME PUBLIC LICENSE
+ DO WHAT THE F**K YOU WANT TO, JUST DON'T BLAME ME PUBLIC LICENSE
                 TERMS AND CONDITIONS FOR COPYING, 
                   DISTRIBUTION AND MODIFICATION
 
- 0. You just DO WHAT THE FUCK YOU WANT TO.
- 1. Don't blame me if something bad happens.
+ 0. You just DO WHAT THE F**K YOU WANT TO.
+ 1. DON'T BLAME ME if something bad happens.
